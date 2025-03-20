@@ -11,13 +11,11 @@ const BookingForm = () => {
     endDate: "",
   });
 
-  const [price, setPrice] = useState<number | null>(null);
+  const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Handle input change
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "roomId") {
@@ -32,7 +30,7 @@ const BookingForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.roomId || !formData.startDate || !formData.endDate) {
@@ -58,7 +56,7 @@ const BookingForm = () => {
         endDate: "",
       });
       setPrice(null);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.response?.data?.message || "Failed to create booking");
     } finally {
       setLoading(false);
